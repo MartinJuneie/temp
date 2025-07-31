@@ -1,0 +1,30 @@
+name: Print Processed JSON
+
+on:
+  workflow_dispatch:
+
+jobs:
+  process-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Process and print JSON
+        run: |
+          JSON_INPUT='{
+            "id": 42,
+            "first_name": "Alice",
+            "middle": { "val": "cd" }
+          }'
+
+          JQ_SCRIPT='
+          {
+            "id": .id,
+            "newval": "ab" + .middle.val + "ef"
+            "first_name": .first_name
+          }'
+
+          OUTPUT=$(echo "$JSON_INPUT" | jq "$JQ_SCRIPT")
+          echo "Final output is: $OUTPUT"
