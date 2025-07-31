@@ -21,8 +21,8 @@ jobs:
 
           JQ_SCRIPT='{
             "id": .id,
-            "first_name": .first_name,
-            "newval": ("https://ab.com/" + .middle.val + "/ef")
+            "newval": ("https://ab.com/" + .middle.val + "/ef"),
+            "first_name": .first_name
           }'
 
           OUTPUT=$(echo "$JSON_INPUT" | jq "$JQ_SCRIPT")
