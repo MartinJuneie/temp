@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install jq
+      - name: 📦 Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Process and print JSON
+      - name: 🔧 Process and print JSON
         run: |
           JSON_INPUT='{
             "id": 42,
@@ -19,11 +19,10 @@ jobs:
             "middle": { "val": "cd" }
           }'
 
-          JQ_SCRIPT='
-          {
+          JQ_SCRIPT='{
             "id": .id,
-            "newval": "ab" + .middle.val + "ef"
-            "first_name": .first_name
+            "first_name": .first_name,
+            "newval": ("ab" + .middle.val + "ef")
           }'
 
           OUTPUT=$(echo "$JSON_INPUT" | jq "$JQ_SCRIPT")
