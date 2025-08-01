@@ -1,22 +1,23 @@
 # .github/workflows/scripts/tempscript.py
 
-import sys
-import json
+import csv
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python tempscript.py <path-to-json>")
-        sys.exit(1)
+    filename = "sample.csv"
 
-    json_path = sys.argv[1]
-    try:
-        with open(json_path, 'r') as f:
-            data = json.load(f)
-            print("📄 Loaded JSON data:")
-            print(json.dumps(data, indent=2))
-    except Exception as e:
-        print(f"❌ Failed to read or parse {json_path}: {e}")
-        sys.exit(1)
+    # Dummy data
+    headers = ["Name", "Age"]
+    rows = [
+        {"Name": "AK", "Age": 30},
+        {"Name": "Martin", "Age": 25},
+        {"Name": "Lee", "Age": 40}
+    ]
+
+    # Write CSV file
+    with open(filename, 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(rows)
 
 if __name__ == "__main__":
     main()
