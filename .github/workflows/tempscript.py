@@ -1,17 +1,22 @@
+# .github/workflows/scripts/tempscript.py
+
+import sys
 import json
 
-# Specify the path to your JSON file
-filename = 'temp.json'
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python tempscript.py <path-to-json>")
+        sys.exit(1)
 
-try:
-    # Open and load the JSON file
-    with open(filename, 'r') as file:
-        data = json.load(file)
-    
-    # Pretty-print the JSON data
-    print(json.dumps(data, indent=4))
+    json_path = sys.argv[1]
+    try:
+        with open(json_path, 'r') as f:
+            data = json.load(f)
+            print("📄 Loaded JSON data:")
+            print(json.dumps(data, indent=2))
+    except Exception as e:
+        print(f"❌ Failed to read or parse {json_path}: {e}")
+        sys.exit(1)
 
-except FileNotFoundError:
-    print(f"File '{filename}' not found.")
-except json.JSONDecodeError as e:
-    print(f"Error decoding JSON: {e}")
+if __name__ == "__main__":
+    main()
