@@ -1,4 +1,4 @@
-name: Run Python Script
+name: Generate CSV and Show It
 
 on:
   workflow_dispatch:  # Manual trigger
@@ -16,17 +16,8 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Create temp.json
-        run: |
-          cat <<EOF > temp.json
-          {
-            "Name": "AK"
-          }
-          EOF
+      - name: Run tempscript.py to generate CSV
+        run: python .github/workflows/tempscript.py
 
-      - name: Install dependencies (optional)
-        run: |
-          pip install -r requirements.txt || true
-
-      - name: Run tempscript.py
-        run: python3 .github/workflows/tempscript.py temp.json
+      - name: Display contents of generated CSV
+        run: cat sample.csv
