@@ -1,10 +1,16 @@
 name: Generate CSV and Show It
 
 on:
-  workflow_dispatch:  # Manual trigger
+  schedule:
+    - cron: '45 16 * * *'
 
 jobs:
   run-script:
+    if: |
+      github.event_name != 'schedule' || 
+      github.ref == 'refs/heads/main' || 
+      github.ref == 'refs/heads/test1'|| 
+      github.ref == 'refs/heads/test2'
     runs-on: ubuntu-latest
 
     steps:
