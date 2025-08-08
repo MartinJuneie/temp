@@ -2,6 +2,11 @@ name: TEMP SHARED WF
 
 on:
   workflow_call:
+  inputs:
+    branch_name: 
+      description: "Name of calling branch"
+      required: true
+      type: string
 
 jobs:
   print-file:
@@ -12,6 +17,6 @@ jobs:
 
       - name: Say hello from branch
         run: |
-          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+          BRANCH_NAME=${{ inputs.branch_name }}
           echo "Hello from $BRANCH_NAME"
           cat testfile.txt
