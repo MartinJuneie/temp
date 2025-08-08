@@ -2,14 +2,23 @@ name: TEMP SHARED WF
 
 on:
   workflow_call:
-    
+    inputs:
+      branch_name:
+        required: true
+        type: string
+
 jobs:
   print-file:
     runs-on: ubuntu-latest
-
     steps:
+      - name: Checkout to branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch_name }}
+
       - name: Say hello from branch
         run: |
           BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
           echo "Hello from $BRANCH_NAME"
+          # The next line will only work if testfile.txt exists in the specified branch.
           cat testfile.txt
