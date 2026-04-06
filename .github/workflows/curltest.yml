@@ -26,7 +26,6 @@ jobs:
         run: |
           curl -v -k --location \
             --request PUT "$BATCH_URL" \
-            -H 'Content-Type: multipart/form-data; boundary=----------2363276482382293722938270018'  \
             --form 'filename=TEST_FILE_NAME' \
             --form 'type=TEST_FILE_TYPE' \
             --form 'artifactFile=@"testfile.txt"'
