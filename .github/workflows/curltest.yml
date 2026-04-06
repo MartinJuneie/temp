@@ -25,7 +25,7 @@ jobs:
       - name: Run Fixed Curl Command
         run: |
           curl -v -k --location \
-            --request PUT '$BATCH_URL' \
+            --request PUT "$BATCH_URL" \
             -H 'Content-Type: multipart/form-data'  \
             --form 'filename=TEST_FILE_NAME' \
             --form 'type=TEST_FILE_TYPE' \
