@@ -14,9 +14,6 @@ jobs:
       BATCH_URL: "https://webhook.site/72b85988-b484-4895-bb61-33a66d9d57bc"
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: Create Test File
         run: |
           cat <<EOF > testfile.txt
@@ -29,7 +26,7 @@ jobs:
         run: |
           curl -s -o /dev/null -w "%{http_code}\n" -k --location \
             --request PUT "$BATCH_URL" \
-            -H "Content-Type: multipart/form-data; boundary=----------" \
+            -H "Content-Type: multipart/form-data; boundary=----------2363276482382293722938270018" \
             --form "filename=TEST_FILE_NAME" \
             --form "type=TEST_FILE_TYPE" \
             --form "artifactFile=@testfile.txt"
