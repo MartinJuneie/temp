@@ -26,7 +26,7 @@ jobs:
         run: |
           curl -s -o /dev/null -w "%{http_code}\n" -k --location \
             --request PUT "$BATCH_URL" \
-            -H "Content-Type: multipart/form-data  \
+            -H "Content-Type: multipart/form-data"  \
             --form "filename=TEST_FILE_NAME" \
             --form "type=TEST_FILE_TYPE" \
             --form "artifactFile=@testfile.txt"
